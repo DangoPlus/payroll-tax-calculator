@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>薪酬个税计算器 (上海) | Salary Calculator (Shanghai)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --color-primary: #34C759;
+        --color-primary-600: #2EBE55;
+        --color-primary-700: #248A3D;
+        --surface-glass: rgba(255, 255, 255, 0.6);
+        --surface-glass-dark: rgba(20, 20, 20, 0.5);
+        --hairline: rgba(255, 255, 255, 0.18);
+        --blur-strong: 16px;
+        --elev-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --radius-card: 16px;
+        --radius-pill: 9999px;
+        --focus-ring: 0 0 0 2px rgba(52, 199, 89, 0.35);
+      }
+      .glass-card {
+        background: var(--surface-glass);
+        backdrop-filter: blur(var(--blur-strong));
+        -webkit-backdrop-filter: blur(var(--blur-strong));
+        border: 1px solid var(--hairline);
+        border-radius: var(--radius-card);
+        box-shadow: var(--elev-card);
+      }
+      .pill-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        border-radius: var(--radius-pill);
+        background: var(--color-primary);
+        color: #fff;
+        height: 44px; line-height: 1;
+        padding: 0 18px;
+        font-weight: 600;
+        box-shadow: 0 6px 16px rgba(52, 199, 89, 0.25);
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      }
+      .pill-btn:hover {
+        background: var(--color-primary-600);
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(52, 199, 89, 0.28);
+      }
+      .pill-btn:active { background: var(--color-primary-700); transform: translateY(0); }
+      .pill-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+      .segmented {
+        display: inline-flex; gap: 4px; padding: 4px; border-radius: var(--radius-pill);
+        background: rgba(0,0,0,0.06);
+      }
+      .segm-item {
+        min-width: 88px; height: 40px; padding: 0 14px; border-radius: var(--radius-pill);
+        font-weight: 600; color: #0f172a; background: transparent; transition: background 180ms ease;
+      }
+      .segm-item.active { background: var(--color-primary); color: #fff; }
+      .segm-item:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+      .input-field {
+        height: 44px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.12);
+        background: rgba(255,255,255,0.75); transition: box-shadow 180ms ease, border-color 180ms ease;
+      }
+      .input-field:focus { border-color: var(--color-primary-600); box-shadow: var(--focus-ring); outline: none; }
+
+      .hover-lift { transition: transform 200ms ease, box-shadow 200ms ease; }
+      .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.1); }
+
+      .tabular-nums { font-variant-numeric: tabular-nums; }
+
+      /* Tooltip */
+      .tooltip { position: relative; display: inline-flex; align-items: center; }
+      .tooltip .tooltip-panel {
+        position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+        opacity: 0; visibility: hidden; transition: opacity 120ms ease, transform 120ms ease;
+        background: var(--surface-glass); border: 1px solid var(--hairline); border-radius: 12px;
+        padding: 8px 10px; color: #0f172a; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        pointer-events: none; box-shadow: var(--elev-card); width: max-content; max-width: 260px; z-index: 50;
+      }
+      .tooltip:hover .tooltip-panel, .tooltip:focus-within .tooltip-panel {
+        opacity: 1; visibility: visible; transform: translateX(-50%) translateY(4px);
+      }
+      .icon-btn { background: transparent; border: 0; padding: 0; display: inline-flex; align-items: center; }
+      .icon-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 6px; }
+
+      @media (prefers-color-scheme: dark) {
+        body { color: #e5e7eb; }
+        .glass-card { background: var(--surface-glass-dark); }
+      }
+    </style>
+</head>
+  <body class="bg-slate-50">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
