@@ -1,0 +1,17 @@
+# Cloudflare Wrangler configuration for static assets (Vite build output)
+
+name = "payroll-tax-calculator"
+compatibility_date = "2024-11-01"
+workers_dev = true
+
+# Serve the built static assets from ./dist without a custom Worker script
+[assets]
+directory = "./dist"
+
+[build]
+command = "npm run build"
+
+# Optional: if you later have a Zone + Route, uncomment and set
+# routes = [ { pattern = "https://your.domain.com/*" } ]
+
+
